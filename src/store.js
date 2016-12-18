@@ -4,10 +4,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        assets: 2.00,
-        cost: 0.02,
-        profits: 0.00,
+        assets: [{cash: 2.00}, {numGlasses: 4}, {numAdv: 0}],
+        sales: 0,
+        profits : sales - expenses.total,
+        expenses:[{cost: 0.02}, {adv: 0.15}, {total: (cost * numGlasses) + (adv * numAdv)}],
         weatherConditions: [{a: 'sunny'}, {b: 'cloudy'}, {c: 'thunderstorms'}],
         numStands: [{s1: 'standOne'}]
+    },
+    mutations:{
+
     }
 })
