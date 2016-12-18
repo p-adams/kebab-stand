@@ -9,7 +9,7 @@ export default new Vuex.Store({
         profits : sales - expenses.total,
         expenses:[{cost: 0.02}, {adv: 0.15}, {total: (cost * numGlasses) + (adv * numAdv)}],
         weatherConditions: [{a: 'sunny'}, {b: 'cloudy'}, {c: 'thunderstorms'}],
-        numStands: [{s1: 'standOne'}]
+        numStands: [{s1: 'Stand One'}]
     },
     mutations:{
 
