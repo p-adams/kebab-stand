@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <div v-if="!start">
+    <div v-if="!startGame">
       <intro></intro>
+    </div>
+    <div v-else-if="startGame">
+      {{forecast}}
     </div>
   </div>
 </template>
@@ -18,6 +21,14 @@ export default {
   methods:{
     startGame(){
       this.start = true
+    }
+  },
+  computed: {
+    startGame(){
+      return this.$store.state.startGame
+    },
+    forecast(){
+      return Object.values(this.$store.getters.forecast)
     }
   },
   components:{

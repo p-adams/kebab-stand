@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
+        startGame: false,
         assets: {
             cash: 50.00,
             sandwiches: 4,
@@ -28,29 +29,32 @@ const store = new Vuex.Store({
         numStands: [{s1: 'Stand One'}]
     },
     mutations:{
-       setPrice(state, payload){
-           payload.price <= 1.25 ? state.salesData.price = payload.price : null
-       },
-       addSandwich(state, payload){
-          state.assets.sandwiches += payload.sandwiches
-          state.assets.cash-= payload.sandwiches * state.expenses.cost
-       },
-       addAdvert(state, payload){
-           state.assets.adverts += payload.adverts
-           state.assets.cash -= payload.adverts * state.expenses.adverts
-       }
+        start(state){
+            state.startGame = true
+        },
+        setPrice(state, payload){
+            payload.price <= 1.25 ? state.salesData.price = payload.price : null
+        },
+        addSandwich(state, payload){
+            state.assets.sandwiches += payload.sandwiches
+            state.assets.cash-= payload.sandwiches * state.expenses.cost
+        },
+        addAdvert(state, payload){
+            state.assets.adverts += payload.adverts
+            state.assets.cash -= payload.adverts * state.expenses.adverts
+        }
     },
     actions:{
+        startGame: context => context.commit('start'),
         setPrice: (context,price) => {context.commit('setPrice', price)},
         addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
         addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)}
     },
     getters:{
         showAssets: state => state.assets,
-        showPrice: state => state.salesData.price
+        forecast: state => state.weatherConditions[Math.floor((Math.random() * state.weatherConditions.length))]
     }
 })
-
 
 
 export default store
