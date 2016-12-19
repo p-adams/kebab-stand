@@ -2,7 +2,7 @@
     <div id="weather">
         <div v-if="sunny">sunny</div>
         <div v-if="cloudy">cloudy</div>
-        <div v-if="tstorms">tstorms</div>
+        <!--<div v-if="tstorms">tstorms</div>-->
     </div>
 </template>
 <script>

@@ -23,9 +23,10 @@ const store = new Vuex.Store({
         },
         weatherConditions: [
             {a: 'sunny'},
-            {b: 'cloudy'},
-            {c: 'thunderstorms'}],
-
+            {b: 'cloudy'}
+            
+        ],
+        thunderstorm: false,
         numStands: [{s1: 'Stand One'}]
     },
     mutations:{
@@ -52,7 +53,12 @@ const store = new Vuex.Store({
     },
     getters:{
         showAssets: state => state.assets,
-        forecast: state => state.weatherConditions[Math.floor((Math.random() * state.weatherConditions.length))]
+        forecast: state => state.weatherConditions[Math.floor((Math.random() * state.weatherConditions.length))],
+        tstorm(){
+            if(forecast[0]===1){
+                console.log('cloudy')
+            }
+        }
     }
 })
 
