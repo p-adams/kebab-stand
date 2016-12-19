@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    {{title}}
+    {{assets}}
   </div>
 </template>
 
@@ -8,12 +8,15 @@
 export default {
   name: 'app',
   computed:{
-    title(){
-      return this.$store.state.cost
+   assets(){
+      return this.$store.getters.showPrice
     }
   }
 }
 </script>
+
+
+
 
 <style>
 #app {
