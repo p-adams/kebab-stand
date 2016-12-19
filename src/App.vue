@@ -4,13 +4,14 @@
       <intro></intro>
     </div>
     <div v-else-if="startGame">
-      {{forecast}}
+      <weather></weather>
     </div>
   </div>
 </template>
 
 <script>
 import intro from './Intro.vue'
+import weather from './Weather.vue'
 export default {
   name: 'app',
   data(){
@@ -26,13 +27,11 @@ export default {
   computed: {
     startGame(){
       return this.$store.state.startGame
-    },
-    forecast(){
-      return Object.values(this.$store.getters.forecast)
     }
   },
   components:{
-    intro
+    intro,
+    weather
   }
 }
 </script>
