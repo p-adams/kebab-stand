@@ -1,8 +1,10 @@
 <template>
     <div id="intro">
+        <div id="splash">
         <transition name="fade">
             <splash v-if="show"></splash>
         </transition>
+        </div>
         <div v-if="!show">
             <storyline></storyline>
         </div>
@@ -36,6 +38,10 @@ export default {
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   margin-top: 60px;
+}
+
+#splash{
+    text-align: center;
 }
 
 h1, h2 {

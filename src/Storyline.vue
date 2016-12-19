@@ -5,17 +5,18 @@
          Should you choose to help Habib, you must make important decisions to help Habib's business thrive:</p>
         <ul>
             <li>How many sandwiches to make each morning</li>
-            <li>How many advertising signs to make (each sign is .95)</li>
+            <li>How many advertising signs to make (each sign is 95&cent)</li>
             <li>What price to charge for each sandwich</li>
         </ul>
-        <h5>press space to continue</h5>
+        <span>press <button>next</button> to continue</span>
         <!--paragraph transition-->
         <p>Habib has left you with $50.00 (assets). The cost to make one shawarma sandwich
-        is .50 (this may change in the future).</p>
+        is 50&cent (this may change in the future).</p>
         <p>Expenses are sum of producing a sandwich and the cost of signs. Profits are the difference
         between the income from shawarma sales and your expenses. Number of shawarma sandwiches you sell
         each day depends on price you charge, and the number of signs you use. Keep track of assest because you
-        can't spend money you don't have. Press enter to play</p>
+        can't spend money you don't have.</p>
+        <span>Press <button>start</button> to play</span>
         <!--paragraph transition-->
     </div>    
 </template>
@@ -25,10 +26,13 @@ export default {
 }
 </script>
 <style>
- p{
-     text-align: justify;
- }
- ul li{
-     list-style: none;
- }
+h3{
+    text-align: center;
+}
+p{
+    text-align: justify;
+}
+ul li{
+    list-style: none;
+}
 </style>

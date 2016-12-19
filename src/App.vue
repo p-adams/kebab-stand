@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <intro></intro>
+    <div v-if="!start">
+      <intro></intro>
+    </div>
   </div>
 </template>
 
@@ -8,6 +10,16 @@
 import intro from './Intro.vue'
 export default {
   name: 'app',
+  data(){
+    return{
+      start: false
+    }
+  },
+  methods:{
+    startGame(){
+      this.start = true
+    }
+  },
   components:{
     intro
   }
