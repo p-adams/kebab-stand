@@ -1,5 +1,5 @@
-# lemonade-stand
-
+# shawarma-stand
+Help Habib's shawarma stand flourish
 > A Vue.js project
 
 ## Build Setup

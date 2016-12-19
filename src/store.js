@@ -5,8 +5,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
         assets: {
-            cash: 2.00,
-            glasses: 4,
+            cash: 50.00,
+            sandwiches: 4,
             adverts: 0
         },
         salesData:{
@@ -16,8 +16,8 @@ const store = new Vuex.Store({
             total: 0
         },
         expenses:{
-            cost: 0.02,
-            adverts: 0.15,
+            cost: 0.50,
+            adverts: 0.95,
             total: 0
         },
         weatherConditions: [
@@ -29,11 +29,11 @@ const store = new Vuex.Store({
     },
     mutations:{
        setPrice(state, payload){
-           payload.price <= 0.25 ? state.salesData.price = payload.price : null
+           payload.price <= 1.25 ? state.salesData.price = payload.price : null
        },
-       addGlass(state, payload){
-          state.assets.glasses += payload.glasses
-          state.assets.cash-= payload.glasses * state.expenses.cost
+       addSandwich(state, payload){
+          state.assets.sandwiches += payload.sandwiches
+          state.assets.cash-= payload.sandwiches * state.expenses.cost
        },
        addAdvert(state, payload){
            state.assets.adverts += payload.adverts
@@ -42,7 +42,7 @@ const store = new Vuex.Store({
     },
     actions:{
         setPrice: (context,price) => {context.commit('setPrice', price)},
-        addGlass: (context,glasses) => {context.commit('addGlass',glasses)},
+        addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
         addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)}
     },
     getters:{
