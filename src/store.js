@@ -2,9 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-// go back to having mutation and action for weather, 
-// so that I can keep track of what state the weather is in
-
 const store = new Vuex.Store({
     state:{
         startGame: false,
@@ -24,11 +21,7 @@ const store = new Vuex.Store({
             adverts: 0.95,
             total: 0
         },
-        weatherConditions: [
-            {a: 'sunny'},
-            {b: 'cloudy'}
-            
-        ],
+        weather: '',
         thunderstorm: false,
         numStands: [{s1: 'Stand One'}]
     },
@@ -46,18 +39,20 @@ const store = new Vuex.Store({
         addAdvert(state, payload){
             state.assets.adverts += payload.adverts
             state.assets.cash -= payload.adverts * state.expenses.adverts
+        },
+        setWeather(state){
+           Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
         }
     },
     actions:{
         startGame: context => context.commit('start'),
         setPrice: (context,price) => {context.commit('setPrice', price)},
         addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
-        addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)}
+        addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)},
+        setWeather: context => context.commit('setWeather')
     },
     getters:{
-        showAssets: state => state.assets,
-        forecast: state => state.weatherConditions[Math.floor((Math.random() * state.weatherConditions.length))],
-
+        showAssets: state => state.assets
     }
 })
 
