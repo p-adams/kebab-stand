@@ -5,7 +5,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state:{
         assets: {
-            cash: 50.00,
+            cash: 2.00,
             glasses: 4,
             adverts: 0
         },
@@ -32,24 +32,18 @@ const store = new Vuex.Store({
            payload.price <= 0.25 ? state.salesData.price = payload.price : null
        },
        addGlass(state, payload){
-           if(state.expenses.cost * payload.glasses > state.assests.cash){
-                state.assets.glasses += payload.glass
-                state.assets.cost -= payload.glasses * state.expenses.cost
-           }
+          state.assets.glasses += payload.glasses
+          state.assets.cash-= payload.glasses * state.expenses.cost
        },
        addAdvert(state, payload){
-            if(state.expenses.cost * payload.adverts > state.assests.cash){
-                state.assets.adverts += payload.advert
-                state.assets.cost -= payload.adverts * state.expenses.adverts
-            }
-       },
-       makeLemonade(state, payload){
-           if(state.assets.cash!=0){
-               setPrice(state, payload)
-               addGlass(state, payload)
-               addAdvert(state, payload)
-           }
+           state.assets.adverts += payload.adverts
+           state.assets.cash -= payload.adverts * state.expenses.adverts
        }
+    },
+    actions:{
+        setPrice: (context,price) => {context.commit('setPrice', price)},
+        addGlass: (context,glasses) => {context.commit('addGlass',glasses)},
+        addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)}
     },
     getters:{
         showAssets: state => state.assets,
@@ -57,8 +51,6 @@ const store = new Vuex.Store({
     }
 })
 
-store.commit('makeLemonade', {
 
-})
 
 export default store
