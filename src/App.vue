@@ -3,11 +3,15 @@
     <transition name="fade">
       <splash v-if="show"></splash>
     </transition>
+    <div v-if="!show">
+      <storyline></storyline>
+    </div>
   </div>
 </template>
 
 <script>
 import splash from './Splash'
+import storyline from './Storyline'
 export default {
   name: 'app',
   created(){
@@ -24,7 +28,8 @@ export default {
     }
   },
   components:{
-    splash
+    splash,
+    storyline
   } 
 }
 </script>
