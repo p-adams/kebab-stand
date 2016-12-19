@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    {{assets}}
+    <transition name="fade">
+      <splash v-if="show"></splash>
+    </transition>
   </div>
 </template>
 
 <script>
+import splash from './Splash'
 export default {
   name: 'app',
-  computed:{
-   assets(){
-      return this.$store.getters.showPrice
+  created(){
+    setTimeout(this.hideSplash, 1000)
+  },
+  data(){
+    return{
+      show:true
     }
-  }
+  },
+  methods:{
+    hideSplash(){
+      this.show = false
+    }
+  },
+  components:{
+    splash
+  } 
 }
 </script>
 
@@ -45,4 +59,15 @@ li {
 a {
   color: #42b983;
 }
+
+.fade-leave-active {
+  transition: opacity .5s
+}
+.fade-leave-active {
+  opacity: 0
+}
+
+
+
+
 </style>
