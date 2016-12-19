@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+// go back to having mutation and action for weather, 
+// so that I can keep track of what state the weather is in
+
 const store = new Vuex.Store({
     state:{
         startGame: false,
@@ -54,11 +57,7 @@ const store = new Vuex.Store({
     getters:{
         showAssets: state => state.assets,
         forecast: state => state.weatherConditions[Math.floor((Math.random() * state.weatherConditions.length))],
-        tstorm(){
-            if(forecast[0]===1){
-                console.log('cloudy')
-            }
-        }
+
     }
 })
 
