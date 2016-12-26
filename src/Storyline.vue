@@ -4,7 +4,7 @@
             <div v-if="!show">
                 <h3>Welcome to Habib's Kebab Stand</h3>
                 <p>Habib is feeling under the weather and he has asked you to run his kebab stand.
-                Should you choose to help Habib, you must make important decisions to help Habib's business thrive:</p>
+                Should you choose to help Habib, you must make important decisions to help Habib's business thrive, including:</p>
                 <ul>
                     <li>How many sandwiches to make each morning</li>
                     <li>How many advertising signs to make (each sign is 95&cent)</li>

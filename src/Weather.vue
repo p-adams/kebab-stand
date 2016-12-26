@@ -1,12 +1,14 @@
 <template>
     <div id="weather">
-        <div v-if="sunny">sunny comp</div>
-        <div v-if="cloudy">cloudy comp</div>
-        
+        <sunny v-if="sunny"></sunny>
+        <cloudy v-if="cloudy"></cloudy>    
     </div>
 </template>
 <script>
+import sunny from './Sunny.vue'
+import cloudy from './Cloudy.vue'
 export default {
+    name: "weather",
     created(){
         this.$store.dispatch('setWeather')
     },
@@ -20,6 +22,10 @@ export default {
             cloudy: false,
             tstorms: false
         }
+    },
+    components:{
+        sunny,
+        cloudy
     }
 }
 </script>
