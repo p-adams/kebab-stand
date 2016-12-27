@@ -4,15 +4,15 @@
             <h4>On day {{day}}, the cost of kebab is ${{cost}}</h4>
             <div>
                 <span>How many sandwiches do you wish to make?
-                    <input type="text" :value="quantity">
+                    <input type="text" v-model="quantity">
                 </span><br>
                 <span>How many signs (.95 each) do you wish to make?
-                    <input type="text" :value="signs">
+                    <input type="text" v-model="signs">
                 </span><br>
                 <span>What price do you wish to charge for kebab?
-                    <input type="text" :value="price">
+                    <input type="text" v-model="price">
                 </span><br>
-                <span>Press next to proceed <button>Next</button></span>
+                <span>Press next to proceed <button @click="setup">Next</button></span>
             </div>
 
         </div>
@@ -27,12 +27,24 @@ export default {
             price: '',
         }
     },
+    methods:{
+        setup(){
+            var quantity = this.quantity
+            var signs = this.signs
+            var price = this.price
+            this.$store.dispatch('setup', {
+                q: quantity,
+                s: signs,
+                p: price
+            })
+        }
+    },
     computed:{
         day(){
-            return 1
+            return this.$store.getters.showDay
         },
         cost(){
-            return 0.50
+            return this.$store.getters.showCost
         }
     }
 }

@@ -7,7 +7,7 @@ const store = new Vuex.Store({
         startGame: false,
         assets: {
             cash: 50.00,
-            sandwiches: 4,
+            sandwiches: 0,
             adverts: 0
         },
         salesData:{
@@ -17,6 +17,7 @@ const store = new Vuex.Store({
             total: 0
         },
         expenses:{
+            day: 1,
             cost: 0.50,
             adverts: 0.95,
             total: 0
@@ -42,6 +43,9 @@ const store = new Vuex.Store({
         },
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
+        },
+        setup(state){
+            //update assets
         }
     },
     actions:{
@@ -49,10 +53,16 @@ const store = new Vuex.Store({
         setPrice: (context,price) => {context.commit('setPrice', price)},
         addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
         addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)},
-        setWeather: context => context.commit('setWeather')
+        setWeather: context => context.commit('setWeather'),
+        setup: (context, setup) => {
+            context.commit('setup', setup)
+        }
     },
     getters:{
-        showAssets: state => state.assets
+        showAssets: state => state.assets,
+        showDay: state => state.expenses.day,
+        showCost: state => state.expenses.cost
+
     }
 })
 
