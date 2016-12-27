@@ -44,8 +44,13 @@ const store = new Vuex.Store({
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
         },
-        setup(state){
-            //update assets
+        setup(state, setup){
+            var sandCost = setup.q * state.expenses.cost
+            var advCost = setup.s * state.expenses.adverts
+            state.assets.cash -= (sandCost + advCost)
+            state.assets.sandwiches += setup.q
+            state.assets.adverts += setup.s
+            state.salesData.price = setup.p
         }
     },
     actions:{
@@ -59,7 +64,7 @@ const store = new Vuex.Store({
         }
     },
     getters:{
-        showAssets: state => state.assets,
+        showAssets: state => state.assets.cash,
         showDay: state => state.expenses.day,
         showCost: state => state.expenses.cost
 

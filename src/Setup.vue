@@ -1,6 +1,7 @@
 <template>
     <div id="setup">
         <div id="layout">
+            <h5>total cash: {{assets}}</h5>
             <h4>On day {{day}}, the cost of kebab is ${{cost}}</h4>
             <div>
                 <span>How many sandwiches do you wish to make?
@@ -37,6 +38,9 @@ export default {
                 s: signs,
                 p: price
             })
+            this.quantity = ""
+            this.signs = ""
+            this.price = ""
         }
     },
     computed:{
@@ -45,6 +49,9 @@ export default {
         },
         cost(){
             return this.$store.getters.showCost
+        },
+        assets(){
+            return this.$store.getters.showAssets
         }
     }
 }
