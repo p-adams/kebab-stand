@@ -8,7 +8,6 @@
         <weather v-show="showWeather"></weather>
       </transition>
       <setup v-show="!showWeather"></setup>
-      <setup></setup>
     </div>
   </div>
 </template>
@@ -19,6 +18,11 @@ import weather from './Weather.vue'
 import setup from './Setup.vue'
 export default {
   name: 'app',
+  updated(){
+    if(this.$store.state.startGame){
+      setTimeout(this.loadSetup, 1000)
+    }
+  },
   data(){
     return{
       start: false,
@@ -28,6 +32,9 @@ export default {
   methods:{
     startGame(){
       this.start = true
+    },
+    loadSetup(){
+      this.showWeather = false
     }
   },
   computed: {
@@ -54,11 +61,11 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-
-
-
-
-
-
+.fade-leave-active {
+  transition: opacity .5s
+}
+.fade-leave-active {
+  opacity: 0
+}
 
 </style>
