@@ -16,12 +16,11 @@
                     <input type="text"
                            v-model="price">
                 </span><br>
-                <span>Press next to proceed
+                <span>Press next to continue
                     <button @click="setup"
                             :disabled="quantity.length===0 || signs.length===0 || price.length===0"
                     >Next</button></span>
             </div>
-
         </div>
     </div>
 </template>
@@ -36,13 +35,10 @@ export default {
     },
     methods:{
         setup(){
-            var quantity = this.quantity
-            var signs = this.signs
-            var price = this.price
             this.$store.dispatch('setup', {
-                q: quantity,
-                s: signs,
-                p: price
+                q: this.quantity,
+                s: this.signs,
+                p: this.price
             })
             this.quantity = ""
             this.signs = ""
