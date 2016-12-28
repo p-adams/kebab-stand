@@ -6,20 +6,17 @@
             <div>
                 <span>How many sandwiches do you wish to make?
                     <input type="text"
-                           @change="getQuantity"
-                           :value="quantity"
+                           @input="getQuantity"
                            >
                 </span><br>
                 <span>How many advertisements (.95 each) do you wish to make?
                     <input type="text"
-                           @change="getAdverts"
-                           :value="adverts"
+                           @input="getAdverts"
                            >
                 </span><br>
                 <span>What price do you wish to charge for kebab?
                     <input type="text"
-                           @change="getPrice"
-                           :value="price"
+                           @input="getPrice"
                            >
                 </span><br>
                 <span>Press next to continue
@@ -41,14 +38,7 @@ export default {
             this.$store.dispatch('setPrice', e.target.value)
         },
         genSales(){
-            /*this.$store.dispatch('setup', {
-                q: this.quantity,
-                s: this.signs,
-                p: this.price
-            })
-            this.quantity = ""
-            this.signs = ""
-            this.price = ""*/
+            this.$store.dispatch('generateSales')
         }
     },
     computed:{
@@ -60,15 +50,6 @@ export default {
         },
         assets(){
             return this.$store.getters.showAssets
-        },
-        quantity(){
-            return this.$store.getters.quantityVal
-        },
-        adverts(){
-            return this.$store.getters.advertsVal
-        },
-        price(){
-            return this.$store.getters.priceVal
         }
     }
 }

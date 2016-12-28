@@ -4,9 +4,6 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
-        quantity: '',
-        adverts: '',
-        price: '',
         startGame: false,
         assets: {
             cash: 20.00,
@@ -34,30 +31,21 @@ const store = new Vuex.Store({
             state.startGame = true
         },
         setPrice(state, payload){
-            state.price = payload
-            console.log(`setPrice ${payload}`)
-            //payload.price <= 1.25 ? state.salesData.price = payload.price : null
+            state.salesData.price = payload
         },
         addSandwich(state, payload){
-            state.quantity = payload
-            console.log(`addSandwich ${payload}`)
-            //state.assets.sandwiches += payload.sandwiches
-            //state.assets.cash-= payload.sandwiches * state.expenses.cost
+            state.assets.sandwiches += payload
+            state.assets.cash -= payload * state.expenses.cost
         },
         addAdvert(state, payload){
-            state.adverts = payload
-            console.log(`addAdvert ${payload}`)
-            //state.assets.adverts += payload.adverts
-            //state.assets.cash -= payload.adverts * state.expenses.adverts
+            state.assets.adverts += payload
+            state.assets.cash -= payload * state.expenses.adverts
         },
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
         },
         generateSales(state, payload){
-            /*state.assets.cash -= (setup.q * state.expenses.cost + setup.s * state.expenses.adverts)
-            state.assets.sandwiches += setup.q
-            state.assets.adverts += setup.s
-            state.salesData.price = setup.p*/
+           
         }
     },
     actions:{
@@ -74,10 +62,7 @@ const store = new Vuex.Store({
         showAllAssets: state => state.assets,
         showAssets: state => state.assets.cash,
         showDay: state => state.expenses.day,
-        showCost: state => state.expenses.cost,
-        quantityVal: state => state.quantity,
-        advertsVal: state => state.adverts,
-        priceVal: state => state.price,
+        showCost: state => state.expenses.cost
 
 
     }
