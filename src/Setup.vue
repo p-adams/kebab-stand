@@ -6,43 +6,49 @@
             <div>
                 <span>How many sandwiches do you wish to make?
                     <input type="text"
-                           v-model="quantity">
+                           @change="getQuantity"
+                           :value="quantity"
+                           >
                 </span><br>
-                <span>How many signs (.95 each) do you wish to make?
+                <span>How many advertisements (.95 each) do you wish to make?
                     <input type="text"
-                           v-model="signs">
+                           @change="getAdverts"
+                           :value="adverts"
+                           >
                 </span><br>
                 <span>What price do you wish to charge for kebab?
                     <input type="text"
-                           v-model="price">
+                           @change="getPrice"
+                           :value="price"
+                           >
                 </span><br>
                 <span>Press next to continue
-                    <button @click="setup"
-                            :disabled="quantity.length===0 || signs.length===0 || price.length===0"
-                    >Next</button></span>
+                    <button @genSales="setup">Next</button></span>
             </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            quantity: '',
-            signs: '',
-            price: '',
-        }
-    },
     methods:{
-        setup(){
-            this.$store.dispatch('setup', {
+        getQuantity(e){
+            this.$store.dispatch('addSandwich', e.target.value)
+        },
+        getAdverts(e){
+            this.$store.dispatch('addAdvert', e.target.value)
+        },
+        getPrice(e){
+            this.$store.dispatch('setPrice', e.target.value)
+        },
+        genSales(){
+            /*this.$store.dispatch('setup', {
                 q: this.quantity,
                 s: this.signs,
                 p: this.price
             })
             this.quantity = ""
             this.signs = ""
-            this.price = ""
+            this.price = ""*/
         }
     },
     computed:{
@@ -54,6 +60,15 @@ export default {
         },
         assets(){
             return this.$store.getters.showAssets
+        },
+        quantity(){
+            return this.$store.getters.quantityVal
+        },
+        adverts(){
+            return this.$store.getters.advertsVal
+        },
+        price(){
+            return this.$store.getters.priceVal
         }
     }
 }

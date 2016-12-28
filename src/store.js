@@ -4,6 +4,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
+        quantity: '',
+        adverts: '',
+        price: '',
         startGame: false,
         assets: {
             cash: 20.00,
@@ -31,26 +34,30 @@ const store = new Vuex.Store({
             state.startGame = true
         },
         setPrice(state, payload){
-            payload.price <= 1.25 ? state.salesData.price = payload.price : null
+            state.price = payload
+            console.log(`setPrice ${payload}`)
+            //payload.price <= 1.25 ? state.salesData.price = payload.price : null
         },
         addSandwich(state, payload){
-            state.assets.sandwiches += payload.sandwiches
-            state.assets.cash-= payload.sandwiches * state.expenses.cost
+            state.quantity = payload
+            console.log(`addSandwich ${payload}`)
+            //state.assets.sandwiches += payload.sandwiches
+            //state.assets.cash-= payload.sandwiches * state.expenses.cost
         },
         addAdvert(state, payload){
-            state.assets.adverts += payload.adverts
-            state.assets.cash -= payload.adverts * state.expenses.adverts
+            state.adverts = payload
+            console.log(`addAdvert ${payload}`)
+            //state.assets.adverts += payload.adverts
+            //state.assets.cash -= payload.adverts * state.expenses.adverts
         },
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
         },
-        setup(state, setup){
-            var sandCost = setup.q * state.expenses.cost
-            var advCost = setup.s * state.expenses.adverts
-            state.assets.cash -= (sandCost + advCost)
+        generateSales(state, payload){
+            /*state.assets.cash -= (setup.q * state.expenses.cost + setup.s * state.expenses.adverts)
             state.assets.sandwiches += setup.q
             state.assets.adverts += setup.s
-            state.salesData.price = setup.p
+            state.salesData.price = setup.p*/
         }
     },
     actions:{
@@ -59,14 +66,19 @@ const store = new Vuex.Store({
         addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
         addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)},
         setWeather: context => context.commit('setWeather'),
-        setup: (context, setup) => {
-            context.commit('setup', setup)
+        generateSales: (context, data) => {
+            context.commit('generateSales', data)
         }
     },
     getters:{
+        showAllAssets: state => state.assets,
         showAssets: state => state.assets.cash,
         showDay: state => state.expenses.day,
-        showCost: state => state.expenses.cost
+        showCost: state => state.expenses.cost,
+        quantityVal: state => state.quantity,
+        advertsVal: state => state.adverts,
+        priceVal: state => state.price,
+
 
     }
 })
