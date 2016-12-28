@@ -2,18 +2,24 @@
     <div id="setup">
         <div id="layout">
             <h5>total cash: {{assets}}</h5>
-            <h4>On day {{day}}, the cost of kebab is ${{cost}}</h4>
+            <h4>On day {{day}}, the cost of making a kebab is ${{cost}}</h4>
             <div>
                 <span>How many sandwiches do you wish to make?
-                    <input type="text" v-model="quantity">
+                    <input type="text"
+                           v-model="quantity">
                 </span><br>
                 <span>How many signs (.95 each) do you wish to make?
-                    <input type="text" v-model="signs">
+                    <input type="text"
+                           v-model="signs">
                 </span><br>
                 <span>What price do you wish to charge for kebab?
-                    <input type="text" v-model="price">
+                    <input type="text"
+                           v-model="price">
                 </span><br>
-                <span>Press next to proceed <button @click="setup">Next</button></span>
+                <span>Press next to proceed
+                    <button @click="setup"
+                            :disabled="quantity.length===0 || signs.length===0 || price.length===0"
+                    >Next</button></span>
             </div>
 
         </div>
