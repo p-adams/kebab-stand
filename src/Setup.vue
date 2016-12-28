@@ -1,7 +1,7 @@
 <template>
     <div id="setup">
         <div id="layout">
-            <h5>total cash: {{assets}}</h5>
+            <h5>total cash: ${{assets}}</h5>
             <h4>On day {{day}}, the cost of making a kebab is ${{cost}}</h4>
             <div>
                 <span>How many sandwiches do you wish to make?
@@ -23,7 +23,7 @@
                            >
                 </span><br>
                 <span>Press next to continue
-                    <button @genSales="setup">Next</button></span>
+                    <button @click="genSales">Next</button></span>
             </div>
         </div>
     </div>
