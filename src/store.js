@@ -6,7 +6,7 @@ const store = new Vuex.Store({
     state:{
         startGame: false,
         assets: {
-            cash: 50.00,
+            cash: 20.00,
             sandwiches: 0,
             adverts: 0
         },

@@ -16,7 +16,7 @@
         <!--paragraph transition-->
         <transition name="fade">
             <div v-if="show">
-                <p>Habib has left you with $50.00 (assets). The cost to make one kebab sandwich
+                <p>Habib has left you with $20.00 (assets). The cost to make one kebab sandwich
                 is 50&cent (this may change in the future).</p>
                 <p>Expenses are sum of producing a sandwich and the cost of signs. Profits are the difference
                 between the income from kebab sales and your expenses. Number of kebab sandwiches you sell
