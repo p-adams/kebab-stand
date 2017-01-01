@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
+        salesGenerated: false,
         startGame: false,
         assets: {
             cash: 20.00,
@@ -44,8 +45,19 @@ const store = new Vuex.Store({
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
         },
-        generateSales(state, payload){
-           
+        setThunderstorm(state){
+            if(state.weather === 'cloudy'){
+                if(Math.random() > 0.7){
+                    state.thunderstorm = true
+                }
+            }
+        },
+        generateSales(state){
+            console.log(`t-storm: ${state.thunderstorm}`)
+            // check weather conditions
+            // if sunny: 5 customers per advertisement
+            // if cloudy: 3 customers per advertisement
+            // if thunderstorm: 0 customers per advertisement 
         }
     },
     actions:{
@@ -54,9 +66,11 @@ const store = new Vuex.Store({
         addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
         addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)},
         setWeather: context => context.commit('setWeather'),
-        generateSales: (context, data) => {
-            context.commit('generateSales', data)
+        generateSales: context => {
+            context.commit('setThunderstorm')
+            context.commit('generateSales')
         }
+        
     },
     getters:{
         showAllAssets: state => state.assets,
