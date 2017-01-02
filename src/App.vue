@@ -7,10 +7,12 @@
       <transition name="fade">
         <weather v-show="showWeather"></weather>
       </transition>
-      <setup v-show="displaySetup"></setup>
-      <div v-if="sales">
-        <storm v-if="storm"></storm>
-        <report v-else></report>
+      <setup v-show="!showWeather"></setup>
+    <div v-if="sales">
+      <transition name="fade">   
+        <storm v-if="tstorm"></storm>
+      </transition>
+        <report v-if="!tstorm"></report>
       </div>
     </div>
   </div>
@@ -28,11 +30,15 @@ export default {
     if(this.$store.state.startGame){
       setTimeout(this.loadSetup, 1000)
     }
+    if(this.$store.state.weather==='tstorm'){
+      setTimeout(this.hideStorm, 1000)
+    }
   },
   data(){
     return{
       start: false,
-      showWeather: true
+      showWeather: true,
+      tstorm: true
     }
   },
   methods:{
@@ -41,6 +47,12 @@ export default {
     },
     loadSetup(){
       this.showWeather = false
+    },
+    handleTransitions(){
+
+    },
+    hideStorm(){
+      this.tstorm = false
     }
   },
   computed: {
@@ -48,10 +60,12 @@ export default {
       return this.$store.state.startGame
     },
     displaySetup(){
-      return this.showWeather === true || this.$store.state.salesMade === false
+      if (this.showWeather === true){
+        return true
+      }
     },
     storm(){
-      return this.$store.state.weather === 'tstorm' ? true : false
+      return this.$store.state.weather === 'tstorm' && this.tstorm ? true : false
     },
     sales(){
       return this.$store.state.salesMade
