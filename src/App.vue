@@ -5,85 +5,29 @@
     </div>
     <div v-else-if="startGame">
       <transition name="fade">
-        <weather v-show="showWeather"></weather>
+        <game></game>
       </transition>
-      <setup v-show="!showWeather"></setup>
-    <div v-if="sales">
-      <transition name="fade">   
-        <storm v-if="tstorm"></storm>
-      </transition>
-        <report v-if="!tstorm"></report>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import intro from './Intro.vue'
-import weather from './Weather.vue'
-import setup from './Setup.vue'
-import storm from './Tstorm.vue'
-import report from './FinancialReport.vue'
+import game from './Game.vue'
+
 export default {
   name: 'app',
-  updated(){
-    if(this.$store.state.startGame){
-      setTimeout(this.loadSetup, 1000)
-    }
-    if(this.$store.state.weather==='tstorm'){
-      setTimeout(this.hideStorm, 1000)
-    }
-  },
-  data(){
-    return{
-      start: false,
-      showWeather: true,
-      tstorm: true
-    }
-  },
-  methods:{
-    startGame(){
-      this.start = true
-    },
-    loadSetup(){
-      this.showWeather = false
-    },
-    handleTransitions(){
-
-    },
-    hideStorm(){
-      this.tstorm = false
-    }
-  },
   computed: {
     startGame(){
       return this.$store.state.startGame
-    },
-    displaySetup(){
-      if (this.showWeather === true){
-        return true
-      }
-    },
-    storm(){
-      return this.$store.state.weather === 'tstorm' && this.tstorm ? true : false
-    },
-    sales(){
-      return this.$store.state.salesMade
     }
   },
   components:{
     intro,
-    weather,
-    setup,
-    storm,
-    report
+    game
   }
 }
 </script>
-
-
-
-
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
