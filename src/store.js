@@ -4,7 +4,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state:{
-        salesGenerated: false,
+        salesMade: false,
         startGame: false,
         assets: {
             cash: 20.00,
@@ -50,7 +50,6 @@ const store = new Vuex.Store({
             if(state.weather === 'cloudy'){
                 if(Math.random() > 0.7){
                     state.weather = 'tstorm'
-
                 }
             }
         },
@@ -63,9 +62,9 @@ const store = new Vuex.Store({
                 if(sandwichesMade >= 0){
                     state.salesData.sales = i 
                     sandwichesMade--
-                }
-                
+                }      
             }
+            state.salesMade = true
         },
         generateReport(state){
             // add/take money from assets

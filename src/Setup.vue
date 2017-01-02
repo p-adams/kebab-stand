@@ -1,7 +1,6 @@
 <template>
     <div id="setup">
         <div id="layout">
-            <h5>sales: #{{sales}}</h5>
             <h4>On day {{day}}, the cost of making a kebab is ${{cost}}</h4>
             <div>
                 <span>How many sandwiches do you wish to make?
@@ -19,8 +18,8 @@
                            @input="getPrice"
                            >
                 </span><br>
-                <span>Press next to continue
-                    <button @click="makeSales">Next</button></span>
+                <span>Press sell to continue
+                    <button @click="makeSales">Sell</button></span>
             </div>
         </div>
     </div>
