@@ -24,11 +24,16 @@ const store = new Vuex.Store({
             total: 0
         },
         weather: '',
-        numStands: [{s1: 'Stand One'}]
+        numStands: [{s1: 'Stand One'}],
+        weatherMode: false,
+        setupMode: false,
+        tstormMode: false,
+        reportMode: false
     },
     mutations:{
         start(state){
             state.startGame = true
+            state.weatherMode = true
         },
         setPrice(state, payload){
             state.salesData.price = parseFloat(payload)
@@ -66,8 +71,16 @@ const store = new Vuex.Store({
             }
             state.salesMade = true
         },
+        nextState(state, payload){  
+            switch(payload.next){
+                case 'setup':
+                    state.weatherMode = false
+                default:
+                    return
+            }
+        },
         generateReport(state){
-            // add/take money from assets
+           console.log(`generateReport: ${state}`)
         }
     },
     actions:{
@@ -79,14 +92,16 @@ const store = new Vuex.Store({
         makeSales: context => {
             context.commit('setThunderstorm')
             context.commit('makeSales')
-        }
+        },
+        nextState: (context, someState) => context.commit('nextState', someState)
     },
     getters:{
         showAllAssets: state => state.assets,
         showCash: state => state.assets.cash,
         showDay: state => state.expenses.day,
         showCost: state => state.expenses.cost,
-        showSales: state => state.salesData.sales
+        showSales: state => state.salesData.sales,
+        showWeather: state => state.weatherMode
     }
 })
 

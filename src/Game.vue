@@ -1,6 +1,7 @@
 <template>
     <div>
         <div v-if="hasCash">
+            {{showWeather}}
             <transition name="fade">
                 <weather v-if="showWeather"></weather>
             </transition>
@@ -24,21 +25,23 @@ export default {
     name: "game",
     data(){
         return{
-            weather: true,
+            weather: false,
             setup: false,
             tstorm: false,
             report: false
         }
     },
-    created(){
-       setTimeout(()=> this.weather = false, 1000)
+    mounted(){
+       setTimeout(()=> this.$store.dispatch('nextState', {
+           next: 'setup'
+       }), 3000)
     },
     computed:{
         hasCash(){
             return this.$store.getters.showCash > 0 ? true : false
         },
         showWeather(){
-            return this.weather
+            return this.$store.getters.showWeather
         },
         showSetup(){
             return this.setup
