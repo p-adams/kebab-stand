@@ -52,12 +52,10 @@ const store = new Vuex.Store({
                 }
             }
         },
-        generateSales(state){
-
+        makeSales(state){
+            
             let sandwichCount = state.assets.sandwiches
             let addCount = state.assets.adverts
-            let price = state.salesData.price
-
             switch(state.weather){
                 case "sunny":
                     break
@@ -68,6 +66,9 @@ const store = new Vuex.Store({
                 default:
                     return 
            }
+        },
+        generateReport(state){
+
         }
     },
     actions:{
@@ -76,19 +77,17 @@ const store = new Vuex.Store({
         addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
         addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)},
         setWeather: context => context.commit('setWeather'),
-        generateSales: context => {
+        makeSales: context => {
             context.commit('setThunderstorm')
             context.commit('generateSales')
         }
-        
     },
     getters:{
         showAllAssets: state => state.assets,
         showAssets: state => state.assets.cash,
         showDay: state => state.expenses.day,
-        showCost: state => state.expenses.cost
-
-
+        showCost: state => state.expenses.cost,
+        showReport: state => state.salesData
     }
 })
 

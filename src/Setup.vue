@@ -20,7 +20,7 @@
                            >
                 </span><br>
                 <span>Press next to continue
-                    <button @click="genSales">Next</button></span>
+                    <button @click="makeSales">Next</button></span>
             </div>
         </div>
     </div>
@@ -37,8 +37,8 @@ export default {
         getPrice(e){
             this.$store.dispatch('setPrice', e.target.value)
         },
-        genSales(){
-            this.$store.dispatch('generateSales')
+       makeSales(){
+            this.$store.dispatch('makeSales')
         }
     },
     computed:{
