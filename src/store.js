@@ -83,7 +83,7 @@ const store = new Vuex.Store({
     },
     getters:{
         showAllAssets: state => state.assets,
-        showAssets: state => state.assets.cash,
+        showCash: state => state.assets.cash,
         showDay: state => state.expenses.day,
         showCost: state => state.expenses.cost,
         showSales: state => state.salesData.sales

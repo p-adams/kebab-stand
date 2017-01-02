@@ -1,14 +1,17 @@
 <template>
     <div>
-        <transition name="fade">
-            <weather></weather>
-        </transition>
-        <setup></setup>
-        <div>
-            <transition name="fade">   
-                <storm></storm>
+        <div v-if="hasCash">
+            <transition name="fade">
+                <weather v-if="showWeather"></weather>
             </transition>
-            <report></report>
+            <setup v-if="showSetup"></setup>
+            <transition name="fade">   
+                <storm v-if="showTstorm"></storm>
+            </transition>
+            <report v-if="showReport"></report>
+        </div>
+        <div v-else>
+            <p>game over</p>
         </div>
     </div>
 </template>
@@ -19,13 +22,33 @@ import storm from './Tstorm.vue'
 import report from './FinancialReport.vue'
 export default {
     name: "game",
-    updated(){
-        /*if(this.$store.state.startGame){
-            setTimeout(this.loadSetup, 1000)
+    data(){
+        return{
+            weather: true,
+            setup: false,
+            tstorm: false,
+            report: false
         }
-        if(this.$store.state.weather==='tstorm'){
-            setTimeout(this.hideStorm, 1000)
-        }*/
+    },
+    created(){
+       setTimeout(()=> this.weather = false, 1000)
+    },
+    computed:{
+        hasCash(){
+            return this.$store.getters.showCash > 0 ? true : false
+        },
+        showWeather(){
+            return this.weather
+        },
+        showSetup(){
+            return this.setup
+        },
+        showTstorm(){
+            return this.tstorm
+        },
+        showReport(){
+            return this.report
+        }
     },
     components:{
         weather,
