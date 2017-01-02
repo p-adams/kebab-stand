@@ -24,7 +24,6 @@ const store = new Vuex.Store({
             total: 0
         },
         weather: '',
-        thunderstorm: false,
         numStands: [{s1: 'Stand One'}]
     },
     mutations:{
@@ -48,16 +47,27 @@ const store = new Vuex.Store({
         setThunderstorm(state){
             if(state.weather === 'cloudy'){
                 if(Math.random() > 0.7){
-                    state.thunderstorm = true
+                    state.weather = 'tstorm'
+
                 }
             }
         },
         generateSales(state){
-            console.log(`t-storm: ${state.thunderstorm}`)
-            // check weather conditions
-            // if sunny: 5 customers per advertisement
-            // if cloudy: 3 customers per advertisement
-            // if thunderstorm: 0 customers per advertisement 
+
+            let sandwichCount = state.assets.sandwiches
+            let addCount = state.assets.adverts
+            let price = state.salesData.price
+
+            switch(state.weather){
+                case "sunny":
+                    break
+                case 'cloudy':
+                    break
+                case 'tstorm':
+                    break
+                default:
+                    return 
+           }
         }
     },
     actions:{
