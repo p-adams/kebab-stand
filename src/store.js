@@ -31,15 +31,17 @@ const store = new Vuex.Store({
             state.startGame = true
         },
         setPrice(state, payload){
-            state.salesData.price = payload
+            state.salesData.price = parseFloat(payload)
         },
         addSandwich(state, payload){
-            state.assets.sandwiches += payload
-            state.assets.cash -= payload * state.expenses.cost
+            let payloadAsInt = parseInt(payload)
+            state.assets.sandwiches = state.assets.sandwiches + payloadAsInt
+            state.assets.cash -= parseInt(payload) * state.expenses.cost
         },
         addAdvert(state, payload){
-            state.assets.adverts += payload
-            state.assets.cash -= payload * state.expenses.adverts
+            let payloadAsInt = parseInt(payload)
+            state.assets.adverts  = state.assets.adverts + payloadAsInt
+            state.assets.cash -= parseInt(payload) * state.expenses.adverts
         },
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
@@ -57,9 +59,13 @@ const store = new Vuex.Store({
             let addCount = state.assets.adverts
             let peopleReached = state.weather === 'sunny' ? addCount * 5
                 : state.weather === 'cloudy' ? addCount * 3 : addCount * 0
-            state.salesData.sales = peopleReached - (peopleReached - sandwichesMade)
-            console.log(`reached: ${peopleReached}`)
-            console.log(`weather: ${state.weather}`)
+            for(let i = 0; i <= peopleReached; i++){
+                if(sandwichesMade >= 0){
+                    state.salesData.sales = i 
+                    sandwichesMade--
+                }
+                
+            }
         },
         generateReport(state){
             // add/take money from assets
