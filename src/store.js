@@ -53,22 +53,16 @@ const store = new Vuex.Store({
             }
         },
         makeSales(state){
-            
-            let sandwichCount = state.assets.sandwiches
+            let sandwichesMade = state.assets.sandwiches
             let addCount = state.assets.adverts
-            switch(state.weather){
-                case "sunny":
-                    break
-                case 'cloudy':
-                    break
-                case 'tstorm':
-                    break
-                default:
-                    return 
-           }
+            let peopleReached = state.weather === 'sunny' ? addCount * 5
+                : state.weather === 'cloudy' ? addCount * 3 : addCount * 0
+            state.salesData.sales = peopleReached - (peopleReached - sandwichesMade)
+            console.log(`reached: ${peopleReached}`)
+            console.log(`weather: ${state.weather}`)
         },
         generateReport(state){
-
+            // add/take money from assets
         }
     },
     actions:{
@@ -79,7 +73,7 @@ const store = new Vuex.Store({
         setWeather: context => context.commit('setWeather'),
         makeSales: context => {
             context.commit('setThunderstorm')
-            context.commit('generateSales')
+            context.commit('makeSales')
         }
     },
     getters:{
@@ -87,7 +81,7 @@ const store = new Vuex.Store({
         showAssets: state => state.assets.cash,
         showDay: state => state.expenses.day,
         showCost: state => state.expenses.cost,
-        showReport: state => state.salesData
+        showSales: state => state.salesData.sales
     }
 })
 

@@ -1,7 +1,7 @@
 <template>
     <div id="setup">
         <div id="layout">
-            <h5>total cash: ${{assets}}</h5>
+            <h5>sales: #{{sales}}</h5>
             <h4>On day {{day}}, the cost of making a kebab is ${{cost}}</h4>
             <div>
                 <span>How many sandwiches do you wish to make?
@@ -48,8 +48,8 @@ export default {
         cost(){
             return this.$store.getters.showCost
         },
-        assets(){
-            return this.$store.getters.showAssets
+        sales(){
+            return this.$store.getters.showSales
         }
     }
 }
