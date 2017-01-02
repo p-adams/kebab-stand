@@ -46,9 +46,6 @@ export default {
         },
         cost(){
             return this.$store.getters.showCost
-        },
-        sales(){
-            return this.$store.getters.showSales
         }
     }
 }

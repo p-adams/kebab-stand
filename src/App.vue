@@ -7,7 +7,7 @@
       <transition name="fade">
         <weather v-show="showWeather"></weather>
       </transition>
-      <setup v-show="!showWeather"></setup>
+      <setup v-show="displaySetup"></setup>
       <div v-if="sales">
         <storm v-if="storm"></storm>
         <report v-else></report>
@@ -21,6 +21,7 @@ import intro from './Intro.vue'
 import weather from './Weather.vue'
 import setup from './Setup.vue'
 import storm from './Tstorm.vue'
+import report from './FinancialReport.vue'
 export default {
   name: 'app',
   updated(){
@@ -47,10 +48,10 @@ export default {
       return this.$store.state.startGame
     },
     displaySetup(){
-      return this.showWeather === true && this.$store.state.salesMade === false
+      return this.showWeather === true || this.$store.state.salesMade === false
     },
     storm(){
-      this.$store.state.weather === 'tstorm' ? true : false
+      return this.$store.state.weather === 'tstorm' ? true : false
     },
     sales(){
       return this.$store.state.salesMade
@@ -60,7 +61,8 @@ export default {
     intro,
     weather,
     setup,
-    storm
+    storm,
+    report
   }
 }
 </script>
