@@ -1,15 +1,13 @@
 <template>
     <div>
         <div v-if="hasCash">
-            {{showWeather}}
             <transition name="fade">
-                <weather v-if="showWeather"></weather>
+                <weather v-if="loadWeather"></weather>
             </transition>
             <setup v-if="showSetup"></setup>
-            <transition name="fade">   
-                <storm v-if="showTstorm"></storm>
+            <transition name="fade">
+                <report v-if="showReport"></report>
             </transition>
-            <report v-if="showReport"></report>
         </div>
         <div v-else>
             <p>game over</p>
@@ -19,18 +17,9 @@
 <script>
 import weather from './Weather.vue'
 import setup from './Setup.vue'
-import storm from './Tstorm.vue'
 import report from './FinancialReport.vue'
 export default {
     name: "game",
-    data(){
-        return{
-            weather: false,
-            setup: false,
-            tstorm: false,
-            report: false
-        }
-    },
     mounted(){
        setTimeout(()=> this.$store.dispatch('nextState', {
            next: 'setup'
@@ -40,23 +29,19 @@ export default {
         hasCash(){
             return this.$store.getters.showCash > 0 ? true : false
         },
-        showWeather(){
-            return this.$store.getters.showWeather
+        loadWeather(){
+            return this.$store.state.weatherMode
         },
         showSetup(){
-            return this.setup
-        },
-        showTstorm(){
-            return this.tstorm
+            return this.$store.state.setupMode
         },
         showReport(){
-            return this.report
+            return this.$store.state.reportMode
         }
     },
     components:{
         weather,
         setup,
-        storm,
         report
     }
 }

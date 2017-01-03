@@ -53,7 +53,7 @@ const store = new Vuex.Store({
         },
         setThunderstorm(state){
             if(state.weather === 'cloudy'){
-                if(Math.random() > 0.2){
+                if(Math.random() > 0.1){
                     state.weather = 'tstorm'
                 }
             }
@@ -74,7 +74,15 @@ const store = new Vuex.Store({
         nextState(state, payload){  
             switch(payload.next){
                 case 'setup':
+                    console.log(`setup: ${payload.next}`)
                     state.weatherMode = false
+                    state.setupMode = true
+                    break
+                case 'report':
+                    console.log(`report: ${payload.next}`)
+                    state.setupMode = false
+                    state.reportMode = true
+                    break
                 default:
                     return
             }
@@ -89,7 +97,7 @@ const store = new Vuex.Store({
         addSandwich: (context,sandwiches) => {context.commit('addSandwich',sandwiches)},
         addAdvert: (context, adverts) => {context.commit('addAdvert', adverts)},
         setWeather: context => context.commit('setWeather'),
-        makeSales: context => {
+        makeSales: (context) => {
             context.commit('setThunderstorm')
             context.commit('makeSales')
         },
@@ -101,7 +109,6 @@ const store = new Vuex.Store({
         showDay: state => state.expenses.day,
         showCost: state => state.expenses.cost,
         showSales: state => state.salesData.sales,
-        showWeather: state => state.weatherMode
     }
 })
 

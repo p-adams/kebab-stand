@@ -38,6 +38,9 @@ export default {
         },
        makeSales(){
             this.$store.dispatch('makeSales')
+            this.$store.dispatch('nextState',{
+                next: 'report'
+            })
         }
     },
     computed:{
