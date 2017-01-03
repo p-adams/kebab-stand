@@ -5,27 +5,39 @@
             <div>
                 <span>How many sandwiches do you wish to make?
                     <input type="text"
+                           v-model="s"
                            @input="getQuantity"
                            >
                 </span><br>
                 <span>How many advertisements (.95 each) do you wish to make?
                     <input type="text"
+                           v-model="a"
                            @input="getAdverts"
                            >
                 </span><br>
                 <span>What price do you wish to charge for kebab?
                     <input type="text"
+                           v-model="p"
                            @input="getPrice"
                            >
                 </span><br>
                 <span>Press sell to continue
-                    <button @click="makeSales">Sell</button></span>
+                    <button @click="makeSales"
+                            :disabled="s.length===0 || a.length===0 || p.length===0"
+                    >Sell</button></span>
             </div>
         </div>
     </div>
 </template>
 <script>
 export default {
+    data(){
+        return{
+            s: '',
+            a: '',
+            p:''
+        }
+    },
     methods:{
         getQuantity(e){
             this.$store.dispatch('addSandwich', e.target.value)

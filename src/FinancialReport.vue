@@ -6,16 +6,34 @@
         </div>
         <div v-if="!storm">
             <h3>Habib's Kebab Stand Financial Report</h3>
-            <!-- 
-                day - Stand
-                # of kebabs sold  
-                price per sandwich - income
-                # of sandwiches made
-                # of signs made - expenses
-                    profit: x
-                    assets: x 
-
-            -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day: </th>
+                        <th>Stand: </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Kebabs sold:</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Price per sandwich: </th>
+                        <th>Income: </th>
+                    </tr>
+                    <tr>
+                        <th># of sandwiches made: </th>
+                        <th># of signs made: </th>
+                    </tr>
+                    <tr>
+                        <th>Profit: </th>
+                    </tr>
+                    <tr>
+                        <th>Assets</th>
+                    </tr>
+                </tbody>
+            </table>
             <span>Press next to continue<button @click="next">next</button></span>
         </div>
     </div>
@@ -58,3 +76,8 @@ export default {
     }
 }
 </script>
+<style>
+table, thead, tr, th, td{
+    border: 1px solid red;
+}
+</style>
