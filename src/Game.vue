@@ -8,6 +8,9 @@
             <transition name="fade">
                 <report v-if="showReport"></report>
             </transition>
+             <transition name="fade">
+                <weather v-if="showWeather"></weather>
+            </transition>
         </div>
         <div v-else>
             <p>game over</p>
@@ -30,6 +33,9 @@ export default {
             return this.$store.getters.showCash > 0 ? true : false
         },
         loadWeather(){
+            return this.$store.state.loadWeatherMode
+        },
+        showWeather(){
             return this.$store.state.weatherMode
         },
         showSetup(){

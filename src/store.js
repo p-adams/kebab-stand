@@ -25,6 +25,7 @@ const store = new Vuex.Store({
         },
         weather: '',
         numStands: [{s1: 'Stand One'}],
+        loadWeatherMode: false,
         weatherMode: false,
         setupMode: false,
         tstormMode: false,
@@ -33,7 +34,7 @@ const store = new Vuex.Store({
     mutations:{
         start(state){
             state.startGame = true
-            state.weatherMode = true
+            state.loadWeatherMode = true
         },
         setPrice(state, payload){
             state.salesData.price = parseFloat(payload)
@@ -74,15 +75,17 @@ const store = new Vuex.Store({
         nextState(state, payload){  
             switch(payload.next){
                 case 'setup':
-                    console.log(`setup: ${payload.next}`)
+                    state.loadWeatherMode = false
                     state.weatherMode = false
                     state.setupMode = true
                     break
                 case 'report':
-                    console.log(`report: ${payload.next}`)
                     state.setupMode = false
                     state.reportMode = true
                     break
+                case 'weather':
+                    state.reportMode = false
+                    state.weatherMode = true
                 default:
                     return
             }

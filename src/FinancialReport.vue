@@ -16,6 +16,7 @@
                     assets: x 
 
             -->
+            <span>Press next to continue<button @click="next">next</button></span>
         </div>
     </div>
 </template>
@@ -37,6 +38,11 @@ export default {
     methods:{
         hideStorm(){
             this.storm = false
+        },
+        next(){
+            this.$store.dispatch('nextState', {
+                next: 'weather'
+            })
         }
     },
     computed:{

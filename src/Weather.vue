@@ -1,7 +1,8 @@
 <template>
     <div id="weather">
         <sunny v-if="sunny"></sunny>
-        <cloudy v-if="cloudy"></cloudy>    
+        <cloudy v-if="cloudy"></cloudy>
+        <span v-if="weather">Press setup to prepare for the day<button @click="next">Setup</button></span>
     </div>
 </template>
 <script>
@@ -21,6 +22,18 @@ export default {
             sunny: false,
             cloudy: false,
             tstorms: false
+        }
+    },
+    methods:{
+        next(){
+            this.$store.dispatch('nextState', {
+                next: 'setup'
+            })
+        }
+    },
+    computed:{
+        weather(){
+            return this.$store.state.weatherMode
         }
     },
     components:{
