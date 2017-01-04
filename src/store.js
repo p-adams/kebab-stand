@@ -84,6 +84,7 @@ const store = new Vuex.Store({
                     state.reportMode = true
                     break
                 case 'weather':
+                    state.expenses.day += 1
                     state.reportMode = false
                     state.weatherMode = true
                 default:
@@ -91,7 +92,7 @@ const store = new Vuex.Store({
             }
         },
         generateReport(state){
-           console.log(`generateReport: ${state}`)
+            console.log(`sales: ${state.salesData.sales}`)
         }
     },
     actions:{
@@ -104,7 +105,8 @@ const store = new Vuex.Store({
             context.commit('setThunderstorm')
             context.commit('makeSales')
         },
-        nextState: (context, someState) => context.commit('nextState', someState)
+        nextState: (context, someState) => context.commit('nextState', someState),
+        generateReport: context => context.commit('generateReport')
     },
     getters:{
         showAllAssets: state => state.assets,

@@ -9,8 +9,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Day: </th>
-                        <th>Stand: </th>
+                        <th>Day: {{day}}</th>
+                        <th>Stand: {{stand}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,14 +28,17 @@
                     </tr>
                     <tr>
                         <th>Profit: </th>
+                        <td></td>
                     </tr>
                     <tr>
                         <th>Assets</th>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
             <span>Press next to continue<button @click="next">next</button></span>
         </div>
+        {{sales}}
     </div>
 </template>
 <script>
@@ -44,7 +47,8 @@ export default {
     name: 'report',
     data(){
         return{
-            storm: false
+            storm: false,
+            sales: ''
         }
     },
     created(){
@@ -52,18 +56,34 @@ export default {
             this.storm = true
             setTimeout(this.hideStorm, 1000)
         }
+        this.$store.dispatch('generateReport')
+    },
+    mounted(){
+        this.loadSalesData()
     },
     methods:{
+        loadSalesData(){
+            this.sales = this.$store.state.salesData
+            for(let item in this.sales){
+                if(this.sales.hasOwnProperty(item)){
+                    console.log("sales info: ", this.sales[item])
+                }
+            }
+        },
         hideStorm(){
             this.storm = false
         },
         next(){
-            this.$store.dispatch('nextState', {
-                next: 'weather'
-            })
+            this.$store.dispatch('nextState', {next: 'weather'})
         }
     },
     computed:{
+        day(){
+            return this.$store.getters.showDay
+        },
+        stand(){
+            return this.$store.state.numStands[0].s1
+        },
         thunderstorm(){
             return this.$store.state.tstormMode
         },
