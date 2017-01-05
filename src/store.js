@@ -54,7 +54,7 @@ const store = new Vuex.Store({
         },
         setThunderstorm(state){
             if(state.weather === 'cloudy'){
-                if(Math.random() > 0.1){
+                if(Math.random() > 0.7){
                     state.weather = 'tstorm'
                 }
             }
@@ -66,8 +66,8 @@ const store = new Vuex.Store({
                 : state.weather === 'cloudy' ? addCount * 3 : addCount * 0
             state.salesData.customers = peopleReached
             for(let i = 0; i <= peopleReached; i++){
-                if(sandwichesMade >= 0 && state.weather != 'tstorm'){
-                    state.salesData.sales = i 
+                if(sandwichesMade > 0){
+                    state.salesData.sales += 1
                     sandwichesMade--
                 }      
             }
@@ -97,6 +97,9 @@ const store = new Vuex.Store({
         },
         clearSales(state){
             state.salesData.sales = 0
+            state.salesData.customers = 0
+            state.assets.adverts = 0
+            state.assets.sandwiches = 0
         }
     },
     actions:{

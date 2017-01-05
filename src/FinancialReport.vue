@@ -38,7 +38,7 @@
             </table>
             <span>Press next to continue<button @click="next">next</button></span>
         </div>
-        {{sales}}
+        Sales: {{sales}}
     </div>
 </template>
 <script>
@@ -63,18 +63,14 @@ export default {
     },
     methods:{
         loadSalesData(){
-            this.sales = this.$store.state.salesData
-            for(let item in this.sales){
-                if(this.sales.hasOwnProperty(item)){
-                    console.log("sales info: ", this.sales[item])
-                }
-            }
+            this.sales = this.$store.state.salesData["sales"]
         },
         hideStorm(){
             this.storm = false
         },
         next(){
             this.$store.dispatch('nextState', {next: 'weather'})
+            this.$store.dispatch('clearSales')
         }
     },
     computed:{
