@@ -29,6 +29,7 @@ export default {
             this.$store.dispatch('nextState', {
                 next: 'setup'
             })
+            this.$store.dispatch('clearSales')
         }
     },
     computed:{

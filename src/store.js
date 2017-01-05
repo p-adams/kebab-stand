@@ -15,13 +15,13 @@ const store = new Vuex.Store({
             sales: 0,
             price: 0.00,
             profits: 0,
+            customers: 0,
             total: 0
         },
         expenses:{
             day: 1,
             cost: 0.50,
-            adverts: 0.95,
-            total: 0
+            adverts: 0.95
         },
         weather: '',
         numStands: [{s1: 'Stand One'}],
@@ -64,8 +64,9 @@ const store = new Vuex.Store({
             let addCount = state.assets.adverts
             let peopleReached = state.weather === 'sunny' ? addCount * 5
                 : state.weather === 'cloudy' ? addCount * 3 : addCount * 0
+            state.salesData.customers = peopleReached
             for(let i = 0; i <= peopleReached; i++){
-                if(sandwichesMade >= 0){
+                if(sandwichesMade >= 0 && state.weather != 'tstorm'){
                     state.salesData.sales = i 
                     sandwichesMade--
                 }      
@@ -92,7 +93,10 @@ const store = new Vuex.Store({
             }
         },
         generateReport(state){
-            console.log(`sales: ${state.salesData.sales}`)
+    
+        },
+        clearSales(state){
+            state.salesData.sales = 0
         }
     },
     actions:{
@@ -106,7 +110,8 @@ const store = new Vuex.Store({
             context.commit('makeSales')
         },
         nextState: (context, someState) => context.commit('nextState', someState),
-        generateReport: context => context.commit('generateReport')
+        generateReport: context => context.commit('generateReport'),
+        clearSales: context => context.commit('clearSales')
     },
     getters:{
         showAllAssets: state => state.assets,
