@@ -122,7 +122,8 @@ const store = new Vuex.Store({
             return sandwichTotal + advertTotal
         },
         profits: state => {
-
+            // calc profits
+            // update assets
         }
     }
 })
