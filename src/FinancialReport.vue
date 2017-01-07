@@ -58,7 +58,6 @@ export default {
             this.storm = true
             setTimeout(this.hideStorm, 1000)
         }
-        this.$store.dispatch('generateReport')
     },
     mounted(){
         this.loadSalesData()
@@ -76,16 +75,36 @@ export default {
         }
     },
     computed:{
-        day() { return this.$store.getters.showDay},
-        stand() { return this.$store.state.numStands[0].s1},
-        sold() {return 0},
-        price() {return 0},
-        income() {return 0},
-        sandwiches() {return 0},
-        signs() {return 0},
-        expenses() {return 0},
-        profits() {return 0},
-        assets() {return 0}
+        day() {
+            return this.$store.getters.showDay
+        },
+        stand() {
+            return this.$store.state.numStands[0].s1
+        },
+        sold() {
+            return this.$store.state.salesData.sales
+        },
+        price() {
+            return this.$store.state.salesData.price
+        },
+        income() {
+            return this.$store.getters.income
+        },
+        sandwiches() {
+            return this.$store.state.assets.sandwiches
+        },
+        signs() {
+            return this.$store.state.assets.adverts
+        },
+        expenses() {
+            return this.$store.getters.expenses
+        },
+        profits() {
+            return 0
+        },
+        assets() {
+            return this.$store.state.assets.cash
+        }
     },
     components:{
         storm
@@ -98,5 +117,8 @@ table{
 }
 table, thead, tr, th, td{
     border: 1px solid red;
+}
+td{
+    padding: 15px;
 }
 </style>

@@ -92,9 +92,6 @@ const store = new Vuex.Store({
                     return
             }
         },
-        generateReport(state){
-    
-        },
         clearSales(state){
             state.salesData.sales = 0
             state.salesData.customers = 0
@@ -113,15 +110,20 @@ const store = new Vuex.Store({
             context.commit('makeSales')
         },
         nextState: (context, someState) => context.commit('nextState', someState),
-        generateReport: context => context.commit('generateReport'),
         clearSales: context => context.commit('clearSales')
     },
     getters:{
-        showAllAssets: state => state.assets,
         showCash: state => state.assets.cash,
         showDay: state => state.expenses.day,
-        showCost: state => state.expenses.cost,
-        showSales: state => state.salesData.sales,
+        income: state => state.salesData.sales * state.salesData.price,
+        expenses: state => {
+            let sandwichTotal = state.assets.sandwiches * state.expenses.cost
+            let advertTotal = state.assets.adverts * state.expenses.adverts
+            return sandwichTotal + advertTotal
+        },
+        profits: state => {
+
+        }
     }
 })
 
