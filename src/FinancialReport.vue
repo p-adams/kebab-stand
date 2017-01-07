@@ -5,7 +5,7 @@
             <storm></storm>
         </div>
         <div v-if="!storm">
-            <h3>Habib's Kebab Stand Financial Report</h3>
+            <h3>$$$ Habib's Kebab Stand Daily Financial Report $$$</h3>
             <table>
                 <thead>
                     <tr>
@@ -14,31 +14,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- handle singular/plural cases -->
                     <tr>
-                        <th>Kebabs sold:</th>
-                        <td></td>
+                        <td>{{sold}} Kebabs sold</td>
                     </tr>
                     <tr>
-                        <th>Price per sandwich: </th>
-                        <th>Income: </th>
+                        <td>${{price}} per sandwich</td>
+                        <td>Income ${{income}}</td>
                     </tr>
                     <tr>
-                        <th># of sandwiches made: </th>
-                        <th># of signs made: </th>
+                        <td>{{sandwiches}} sandwiches made</td>
                     </tr>
                     <tr>
-                        <th>Profit: </th>
-                        <td></td>
+                        <td>{{signs}} signs made</td>
+                        <td>Expenses ${{expenses}}</td>         
                     </tr>
                     <tr>
-                        <th>Assets</th>
-                        <td></td>
+                        <td>Profits ${{profits}}</td>
+                    </tr>
+                    <tr>
+                        <td>Assets ${{assets}}</td>
                     </tr>
                 </tbody>
             </table>
-            <span>Press next to continue<button @click="next">next</button></span>
+            <span>Press next to continue
+                <button @click="next">next</button>
+            </span>
         </div>
-        Sales: {{sales}}
     </div>
 </template>
 <script>
@@ -74,18 +76,16 @@ export default {
         }
     },
     computed:{
-        day(){
-            return this.$store.getters.showDay
-        },
-        stand(){
-            return this.$store.state.numStands[0].s1
-        },
-        thunderstorm(){
-            return this.$store.state.tstormMode
-        },
-        report(){
-            return this.$store.state.reportMode
-        }
+        day() { return this.$store.getters.showDay},
+        stand() { return this.$store.state.numStands[0].s1},
+        sold() {return 0},
+        price() {return 0},
+        income() {return 0},
+        sandwiches() {return 0},
+        signs() {return 0},
+        expenses() {return 0},
+        profits() {return 0},
+        assets() {return 0}
     },
     components:{
         storm
@@ -93,6 +93,9 @@ export default {
 }
 </script>
 <style>
+table{
+    width: 100%;
+}
 table, thead, tr, th, td{
     border: 1px solid red;
 }
