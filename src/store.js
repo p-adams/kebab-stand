@@ -41,16 +41,10 @@ const store = new Vuex.Store({
             state.salesData.price = parseFloat(payload)
         },
         addSandwich(state, payload){
-            let payloadAsInt = parseInt(payload)
-            state.assets.sandwiches = payloadAsInt
-            //console.log(`add sandwich: ${state.assets.sandwiches}`)
-            state.assets.cash -= parseInt(payload) * state.expenses.cost
+            state.assets.sandwiches = parseInt(payload)
         },
         addAdvert(state, payload){
-            let payloadAsInt = parseInt(payload)
-            state.assets.adverts  = payloadAsInt
-            //console.log(`add adverts: ${state.assets.adverts}`)
-            state.assets.cash -= parseInt(payload) * state.expenses.adverts
+            state.assets.adverts  = parseInt(payload)
         },
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
@@ -82,10 +76,7 @@ const store = new Vuex.Store({
             let advertTotal = state.assets.adverts * state.expenses.adverts
             let expenses = sandwichTotal + advertTotal
             let profit = income - expenses
-            // need to fix
-            console.log(`profit: ${profit}`)
-            console.log(`cash ${state.assets.cash}`)
-            state.assets.cash = state.assets.cash
+            state.assets.cash = parseFloat(state.assets.cash + profit).toFixed(2)
             
         },
         updateExpenses(state){
@@ -145,7 +136,7 @@ const store = new Vuex.Store({
             let sandwichTotal = state.assets.sandwiches * state.expenses.cost
             let advertTotal = state.assets.adverts * state.expenses.adverts
             let exp = sandwichTotal + advertTotal
-            return inc - exp
+            return parseFloat(inc - exp).toFixed(2)
         }
     }
 })

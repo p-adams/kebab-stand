@@ -35,7 +35,7 @@ export default {
         return{
             s: '',
             a: '',
-            p:''
+            p: ''
         }
     },
     methods:{
