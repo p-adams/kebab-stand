@@ -51,7 +51,14 @@ const store = new Vuex.Store({
         },
         setThunderstorm(state){
             if(state.weather === 'cloudy'){
-                if(Math.random() > 0.75){
+                let randWeather = Math.random()
+                if(randWeather < 0.30){
+                    state.weather = 'lightrain'
+                } else if(randWeather >= 0.30 && randWeather < 0.50){
+                    state.weather = 'mediumrain'
+                } else if(randWeather >= 0.50 && randWeather < 0.75){
+                    state.weather = 'heavyrain'
+                } else {
                     state.weather = 'tstorm'
                 }
             }
