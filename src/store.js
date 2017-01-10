@@ -16,6 +16,7 @@ const store = new Vuex.Store({
             price: 0.00,
             profits: 0,
             customers: 0,
+            expenses: 0,
             total: 0
         },
         expenses:{
@@ -41,12 +42,14 @@ const store = new Vuex.Store({
         },
         addSandwich(state, payload){
             let payloadAsInt = parseInt(payload)
-            state.assets.sandwiches = state.assets.sandwiches + payloadAsInt
+            state.assets.sandwiches = payloadAsInt
+            //console.log(`add sandwich: ${state.assets.sandwiches}`)
             state.assets.cash -= parseInt(payload) * state.expenses.cost
         },
         addAdvert(state, payload){
             let payloadAsInt = parseInt(payload)
-            state.assets.adverts  = state.assets.adverts + payloadAsInt
+            state.assets.adverts  = payloadAsInt
+            //console.log(`add adverts: ${state.assets.adverts}`)
             state.assets.cash -= parseInt(payload) * state.expenses.adverts
         },
         setWeather(state){
@@ -54,7 +57,7 @@ const store = new Vuex.Store({
         },
         setThunderstorm(state){
             if(state.weather === 'cloudy'){
-                if(Math.random() > 0.7){
+                if(Math.random() > 0.75){
                     state.weather = 'tstorm'
                 }
             }
@@ -63,15 +66,32 @@ const store = new Vuex.Store({
             let sandwichesMade = state.assets.sandwiches
             let addCount = state.assets.adverts
             let peopleReached = state.weather === 'sunny' ? addCount * 5
-                : state.weather === 'cloudy' ? addCount * 3 : addCount * 0
+                : state.weather === 'cloudy' ? addCount * 3 : null
             state.salesData.customers = peopleReached
             for(let i = 0; i <= peopleReached; i++){
-                if(sandwichesMade > 0){
+                if(sandwichesMade > 0 && state.weather != 'tstorm'){
                     state.salesData.sales += 1
                     sandwichesMade--
                 }      
             }
             state.salesMade = true
+        },
+        updateAssets(state){
+            let income = state.salesData.sales * state.salesData.price
+            let sandwichTotal = state.assets.sandwiches * state.expenses.cost
+            let advertTotal = state.assets.adverts * state.expenses.adverts
+            let expenses = sandwichTotal + advertTotal
+            let profit = income - expenses
+            // need to fix
+            console.log(`profit: ${profit}`)
+            console.log(`cash ${state.assets.cash}`)
+            state.assets.cash = state.assets.cash
+            
+        },
+        updateExpenses(state){
+            let sandwichTotal = state.assets.sandwiches * state.expenses.cost
+            let advertTotal = state.assets.adverts * state.expenses.adverts
+            state.salesData.expenses = sandwichTotal + advertTotal
         },
         nextState(state, payload){  
             switch(payload.next){
@@ -108,6 +128,8 @@ const store = new Vuex.Store({
         makeSales: (context) => {
             context.commit('setThunderstorm')
             context.commit('makeSales')
+            context.commit('updateAssets')
+            context.commit('updateExpenses')
         },
         nextState: (context, someState) => context.commit('nextState', someState),
         clearSales: context => context.commit('clearSales')
@@ -117,11 +139,7 @@ const store = new Vuex.Store({
         showDay: state => state.expenses.day,
         showCost: state => state.expenses.cost,
         income: state => state.salesData.sales * state.salesData.price,
-        expenses: state => {
-            let sandwichTotal = state.assets.sandwiches * state.expenses.cost
-            let advertTotal = state.assets.adverts * state.expenses.adverts
-            return sandwichTotal + advertTotal
-        },
+        expenses: state => state.salesData.expenses,
         profits: state => {
             let inc = state.salesData.sales * state.salesData.price
             let sandwichTotal = state.assets.sandwiches * state.expenses.cost
