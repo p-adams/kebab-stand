@@ -115,6 +115,7 @@ const store = new Vuex.Store({
     getters:{
         showCash: state => state.assets.cash,
         showDay: state => state.expenses.day,
+        showCost: state => state.expenses.cost,
         income: state => state.salesData.sales * state.salesData.price,
         expenses: state => {
             let sandwichTotal = state.assets.sandwiches * state.expenses.cost
@@ -122,8 +123,11 @@ const store = new Vuex.Store({
             return sandwichTotal + advertTotal
         },
         profits: state => {
-            // calc profits
-            // update assets
+            let inc = state.salesData.sales * state.salesData.price
+            let sandwichTotal = state.assets.sandwiches * state.expenses.cost
+            let advertTotal = state.assets.adverts * state.expenses.adverts
+            let exp = sandwichTotal + advertTotal
+            return inc - exp
         }
     }
 })

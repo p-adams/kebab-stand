@@ -100,7 +100,7 @@ export default {
             return this.$store.getters.expenses
         },
         profits() {
-            return 0
+            return this.$store.getters.profits
         },
         assets() {
             return this.$store.state.assets.cash
