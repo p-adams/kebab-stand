@@ -2,6 +2,7 @@
     <div id="setup">
         <div id="layout">
             <h4>On day {{day}}, the cost of making a kebab is ${{cost}}</h4>
+            <h5 v-if="forecast">Weather forecast: {{forecast}} chance of rain</h5>
             <div>
                 <span>How many sandwiches do you wish to make?
                     <input type="text"
@@ -61,6 +62,10 @@ export default {
         },
         cost(){
             return this.$store.getters.showCost
+        },
+        forecast(){
+            let weather = this.$store.state.weather
+            return weather === 'light' ? '30%' : weather === 'heavy' ? '50%' : null
         }
     }
 }

@@ -48,26 +48,27 @@ const store = new Vuex.Store({
         },
         setWeather(state){
            Math.random() > 0.5 ? state.weather = 'sunny' : state.weather = 'cloudy'
+            let randWeather = Math.random()
+                if(randWeather >= .30 && randWeather < .50){
+                    state.weather = 'light'
+                } else if(randWeather >= 0.50 && randWeather < 0.75){
+                    state.weather = 'heavy'
+                }
         },
         setThunderstorm(state){
             if(state.weather === 'cloudy'){
-                let randWeather = Math.random()
-                if(randWeather < 0.30){
-                    state.weather = 'lightrain'
-                } else if(randWeather >= 0.30 && randWeather < 0.50){
-                    state.weather = 'mediumrain'
-                } else if(randWeather >= 0.50 && randWeather < 0.75){
-                    state.weather = 'heavyrain'
-                } else {
+                if(Math.random() >= .75){
                     state.weather = 'tstorm'
                 }
             }
         },
         makeSales(state){
             let sandwichesMade = state.assets.sandwiches
-            let addCount = state.assets.adverts
-            let peopleReached = state.weather === 'sunny' ? addCount * 5
-                : state.weather === 'cloudy' ? addCount * 3 : null
+            let adCount = state.assets.adverts
+            let peopleReached = state.weather === 'sunny' ? adCount * 5
+                : state.weather === 'cloudy' ? adCount * 4 
+                : state.weather === 'light' ? adCount * 2 
+                : state.weather === 'heavy' ? adCount * 1 : null
             state.salesData.customers = peopleReached
             for(let i = 0; i <= peopleReached; i++){
                 if(sandwichesMade > 0 && state.weather != 'tstorm'){
