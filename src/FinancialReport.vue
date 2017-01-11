@@ -1,5 +1,6 @@
 <template>
-    <div id="report">
+    <div class="container" id="report">
+        <div class="jumbotron">
         <div v-if="storm">
             meow
             <storm></storm>
@@ -38,12 +39,13 @@
                     <tr>                
                         <td>
                             <span>Press next to continue
-                            <button @click="next">next</button>
+                            <button class="btn btn-primary" @click="next">next</button>
                             </span>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </template>
