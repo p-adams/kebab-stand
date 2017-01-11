@@ -84,7 +84,7 @@ const store = new Vuex.Store({
             let advertTotal = state.assets.adverts * state.expenses.adverts
             let expenses = sandwichTotal + advertTotal
             let profit = income - expenses
-            state.assets.cash = parseFloat(state.assets.cash + profit).toFixed(2)
+            state.assets.cash += profit
             
         },
         updateExpenses(state){

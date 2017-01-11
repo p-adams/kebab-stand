@@ -6,6 +6,7 @@
         </div>
         <div v-if="!storm">
             <h3>$$$ Habib's Kebab Stand Daily Financial Report $$$</h3>
+            weather : {{this.$store.state.weather}}
             <table>
                 <thead>
                     <tr>
@@ -103,7 +104,7 @@ export default {
             return this.$store.getters.profits
         },
         assets() {
-            return this.$store.state.assets.cash
+            return this.$store.state.assets.cash.toFixed(2)
         }
     },
     components:{
