@@ -14,7 +14,7 @@
         </div>
         <div v-else>
             <h3>game over</h3>
-            <table>
+            <table class="table borderless">
                 <tbody>
                     <tr>
                         <th>Cash remaining</th>
@@ -70,8 +70,7 @@ export default {
 .fade-leave-active {
     opacity: 0
 }
-table{
-    width: 100%;
-    text-align: center;
+.borderless td, .borderless th {
+    border: none;
 }
 </style>

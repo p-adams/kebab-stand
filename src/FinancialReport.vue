@@ -1,13 +1,12 @@
 <template>
     <div class="container" id="report">
-        <div class="jumbotron">
         <div v-if="storm">
             meow
             <storm></storm>
         </div>
         <div v-if="!storm">
             <h3>$$$ Habib's Kebab Stand Daily Financial Report $$$</h3>
-            <table>
+            <table class="table borderless">
                 <thead>
                     <tr>
                         <th>Day: {{day}}</th>
@@ -45,7 +44,6 @@
                     </tr>
                 </tbody>
             </table>
-            </div>
         </div>
     </div>
 </template>
@@ -118,11 +116,7 @@ export default {
 }
 </script>
 <style>
-table{
-    width: 100%;
-}
-
-td{
-    padding: 15px;
+.borderless td, .borderless th {
+    border: none !important;
 }
 </style>

@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <div v-if="!startGame">
-      <intro></intro>
-    </div>
-    <div v-else-if="startGame">
-      <transition name="fade">
-        <game></game>
-      </transition>
+    <div class="container">
+      <div class="jumbotron">
+        <div v-if="!startGame">
+          <intro></intro>
+        </div>
+        <div v-else-if="startGame">
+          <transition name="fade">
+            <game></game>
+          </transition>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +34,12 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  color: white;
+  background: black;
+}
+
+.jumbotron{
+  background: black !important;
 }
 
 h1, h2 {
