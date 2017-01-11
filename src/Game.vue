@@ -13,7 +13,18 @@
             </transition>
         </div>
         <div v-else>
-            <p>game over</p>
+            <h3>game over</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Cash remaining</th>
+                    </tr>
+                    <tr>
+                        <td>{{this.$store.state.assets.cash.toFixed(2)}}</td>
+                    </tr>
+                    <h4>You do not have enough cash to continue</h4>
+                </tbody>
+            <table>
         </div>
     </div>
 </template>
@@ -30,7 +41,7 @@ export default {
     },
     computed:{
         hasCash(){
-            return this.$store.getters.showCash > 0 ? true : false
+            return this.$store.getters.showCash < 2 ? false : true
         },
         loadWeather(){
             return this.$store.state.loadWeatherMode
@@ -58,5 +69,9 @@ export default {
 }
 .fade-leave-active {
     opacity: 0
+}
+table{
+    width: 100%;
+    text-align: center;
 }
 </style>

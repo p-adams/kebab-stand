@@ -10,7 +10,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import intro from './Intro.vue'
 import game from './Game.vue'

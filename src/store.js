@@ -105,6 +105,12 @@ const store = new Vuex.Store({
                     break
                 case 'weather':
                     state.expenses.day += 1
+                    if(state.expenses.day === 5){
+                        state.expenses.cost = .65
+                    }
+                    if(state.expenses.day === 10){
+                        state.expenses.cost = .75
+                    }
                     state.reportMode = false
                     state.weatherMode = true
                 default:

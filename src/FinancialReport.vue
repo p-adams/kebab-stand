@@ -6,7 +6,6 @@
         </div>
         <div v-if="!storm">
             <h3>$$$ Habib's Kebab Stand Daily Financial Report $$$</h3>
-            weather : {{this.$store.state.weather}}
             <table>
                 <thead>
                     <tr>
@@ -36,11 +35,15 @@
                     <tr>
                         <td>Assets ${{assets}}</td>
                     </tr>
+                    <tr>                
+                        <td>
+                            <span>Press next to continue
+                            <button @click="next">next</button>
+                            </span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            <span>Press next to continue
-                <button @click="next">next</button>
-            </span>
         </div>
     </div>
 </template>
@@ -116,9 +119,7 @@ export default {
 table{
     width: 100%;
 }
-table, thead, tr, th, td{
-    border: 1px solid red;
-}
+
 td{
     padding: 15px;
 }
