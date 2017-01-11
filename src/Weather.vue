@@ -2,7 +2,7 @@
     <div id="weather">
         <sunny v-if="sunny"></sunny>
         <cloudy v-if="cloudy"></cloudy>
-        <span v-if="weather">Press setup to prepare for the day<button @click="next">Setup</button></span>
+        <span class="setup" v-if="weather">Press setup to prepare for the day<button @click="next">Setup</button></span>
     </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
         this.$store.dispatch('setWeather')
     },
     mounted(){
-        var weather = this.$store.state.weather
+        let weather = this.$store.state.weather
         return weather === "sunny" ? this.sunny = true : this.cloudy = true
     },
     data(){
@@ -42,3 +42,8 @@ export default {
     }
 }
 </script>
+<style>
+    .setup{
+        margin-left: 7%;
+    }
+</style>

@@ -33,15 +33,13 @@ export default {
 </script>
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: white;
+  font-family: "ArcadeClassic" !important;
+  color: lightyellow;
   background: black;
 }
-
 .jumbotron{
   background: black !important;
 }
-
 h1, h2 {
   font-weight: normal;
 }
@@ -51,5 +49,15 @@ h1, h2 {
 .fade-leave-active {
   opacity: 0
 }
-
+button {
+  background-color: black !important;
+  border: 0.1em solid yellowgreen;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+input {
+  background: black !important;
+  margin-left: 10px;
+}
 </style>

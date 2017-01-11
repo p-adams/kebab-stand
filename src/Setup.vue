@@ -10,6 +10,7 @@
                     <input type="text"
                            v-model="s"
                            @input="getQuantity"
+                           ref="sandwich"
                            >
                 <h6 v-if="warn1">Not enough cash to make that many sandwiches</h6>
                 </span><br>
@@ -43,6 +44,9 @@ export default {
             a: '',
             p: ''
         }
+    },
+    mounted(){
+        this.$refs.sandwich.focus()
     },
     methods:{
         getQuantity(e){
@@ -90,6 +94,6 @@ export default {
 <style>
     input{
         width: 25px;
-        border: 0.1em dotted red;
+        border: none !important;
     }
 </style>

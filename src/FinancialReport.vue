@@ -16,17 +16,17 @@
                 <tbody>
                     <!-- handle singular/plural cases -->
                     <tr>
-                        <td>{{sold}} Kebabs sold</td>
+                        <td>{{sold}} {{sold <= 1 ? 'kebab' : 'kebabs'}} sold</td>
                     </tr>
                     <tr>
                         <td>${{price}} per sandwich</td>
                         <td>Income ${{income}}</td>
                     </tr>
                     <tr>
-                        <td>{{sandwiches}} sandwiches made</td>
+                        <td>{{sandwiches}} {{sandwiches <= 1 ? 'sandwich' : 'sandwiches'}} made</td>
                     </tr>
                     <tr>
-                        <td>{{signs}} signs made</td>
+                        <td>{{signs}} {{signs <= 1 ? 'sign' : 'signs'}} made</td>
                         <td>Expenses ${{expenses}}</td>         
                     </tr>
                     <tr>
@@ -38,7 +38,7 @@
                     <tr>                
                         <td>
                             <span>Press next to continue
-                            <button class="btn btn-primary" @click="next">next</button>
+                            <button @click="next">next</button>
                             </span>
                         </td>
                     </tr>
@@ -118,5 +118,10 @@ export default {
 <style>
 .borderless td, .borderless th {
     border: none !important;
+}
+h3{
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 </style>
