@@ -31,5 +31,5 @@ npm run dev
 ##### Wish list:
 <ul>
   <li>add feature to own & run multiple kebab stands</li>
-  <li>allow for multiple players on a socket connection to compete or work together...or even form alliances!</li>
+  <li>allow for multiple players on a socket connection to compete or work together...and even form alliances!</li>
 </ul>
