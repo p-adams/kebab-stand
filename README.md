@@ -26,6 +26,8 @@ npm install
 # Run the server
 npm run dev
 
+```
+
 ##### Wish list:
 <ul>
   <li>add feature to own & run multiple kebab stands</li>
