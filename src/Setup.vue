@@ -86,7 +86,7 @@ export default {
              return this.a * this.$store.state.expenses.adverts > this.$store.state.assets.cash
         },
         warn3(){
-            return this.p != '' && this.p < .50 || this.p > 1.75
+            return this.p != '' && this.p < .50 || this.p > 1.75 
         }
     }
 }

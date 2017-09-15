@@ -1,7 +1,7 @@
 <template>
     <div>
-        <transition name="fade">
-            <div v-if="!show">
+        <transition name="fade" mode="out-in">
+            <div v-if="!show" key="foo">
                 <h3>Welcome to Habib's Kebab Stand</h3>
                 <p>Habib is feeling under the weather, and he has asked you to run his kebab stand.
                 Should you choose to help Habib, you must make important decisions to help Habib's business thrive, including:</p>
@@ -12,10 +12,7 @@
                 </ul>
                 <span>press <button @click="next">next</button> to continue</span>
             </div>
-        </transition>      
-        <!--paragraph transition-->
-        <transition name="fade">
-            <div v-if="show">
+            <div v-else key="baz">
                 <p>Habib has left you with $20.00 (assets). The cost to make one kebab sandwich
                 is 50&cent (this may change in the future).</p>
                 <p>Expenses are sum of producing a sandwich and the cost of signs. Profits are the difference
@@ -24,6 +21,10 @@
                 can't spend money you don't have.</p>
                 <span>Press <button @click="start">start</button> to play</span>
             </div>
+        </transition>      
+        <!--paragraph transition-->
+        <transition name="fade">
+       
         </transition>
         <!--paragraph transition-->
     </div>    
