@@ -24,7 +24,7 @@
                     </tr>
                     <h4>You do not have enough cash to continue</h4>
                 </tbody>
-            <table>
+            </table>
         </div>
     </div>
 </template>
